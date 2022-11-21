@@ -1,0 +1,4 @@
+Registro 
+
+Dado: números aleatórios (1910)
+Informação: explica o dado (Nasci em 1910)
