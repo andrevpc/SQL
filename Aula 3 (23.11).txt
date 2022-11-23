@@ -1,0 +1,14 @@
+Modelagem de dado: fazer antes de criar tabelas
+Usando MER (Modelo Entidade-Relacionamento)::
+Entidade: Tudo que pode ser representado no mundo real (com atributos)
+Atributos: Caracteristicas das entidades (Cpf, idade, preço,...)
+Atributo Determinante: não pode se repetir e nem ser nulo
+Atributo Composto: Mais de um valor de outros tipos (endereço: rua str, numero int)
+Atributo Multivalorado: Mais de um valor do mesmo tipo (mais de um telefone)
+Relacionamentos: um para um: união civil
+um para muitos: sala da escola (uma sala pode ter muitos alunos)
+muitos para muitos: professor e turmas (um professor pode dar aula para muitas turmas e a turma pode ter vários professores)
+
+Usando DER (Diagrama Entidade-Relacionamento)::
+Representação gráfica do MER - Usando Excalidraw/BR Modelo Web
+Quadrado é entidade, Relacionamento é paralelogramo, atributo é uma bola, atributo determinante é uma bola pintada, atributo composto/multivalorado é duas bolas e para mostrar o relacionamento colocamos 1 e n(muitos)
