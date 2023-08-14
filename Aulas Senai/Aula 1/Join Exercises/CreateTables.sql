@@ -1,0 +1,45 @@
+USE master
+GO
+
+IF EXISTS(SELECT * FROM SYS.DATABASES WHERE NAME = 'exercicios')
+	DROP DATABASE exercicios
+
+CREATE DATABASE	exercicios
+go
+
+USE exercicios
+GO
+
+CREATE TABLE Cliente(
+	Id INT IDENTITY(1,1),
+	nome VARCHAR(100) NOT NULL,
+	cpf VARCHAR(11) PRIMARY KEY NOT NULL,
+	dataNasc DATE NOT NULL
+)
+
+CREATE TABLE Modelo(
+	cod_modelo INT IDENTITY(1,1) PRIMARY KEY,
+	descricao_modelo VARCHAR(100) NOT NULL,
+)
+
+CREATE TABLE Veiculo(
+	id INT IDENTITY(1,1),
+	codigo_modelo INT FOREIGN KEY REFERENCES Modelo(cod_modelo) NOT NULL,
+	cliente_cpf VARCHAR(11) FOREIGN KEY REFERENCES Cliente(cpf) NOT NULL,
+	cor VARCHAR(20) NOT NULL,
+	placa VARCHAR(7) PRIMARY KEY NOT NULL
+)
+
+CREATE TABLE Patio(
+	numero_patio INT IDENTITY(1,1) PRIMARY KEY,
+	endereco VARCHAR(50),
+	capacidade INT
+)
+
+CREATE TABLE Estacionamento(
+	cod INT IDENTITY(1,1) PRIMARY KEY,
+	num_patio INT FOREIGN KEY REFERENCES Patio(numero_patio) NOT NULL,
+	placa_veiculo VARCHAR(7) FOREIGN KEY REFERENCES Veiculo(placa) NOT NULL,
+	data_entrada DATETIME NOT NULL,
+	data_saida DATETIME NOT NULL
+)
