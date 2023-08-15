@@ -31,3 +31,24 @@ CREATE TABLE [HistoricoClientes]
 )
 
 GO
+--“HistoricoClientes” mostre os a data da atualização e o SaldoAnterior da modificação.
+CREATE TRIGGER UpdateHistTrigger
+ON [Clientes]
+AFTER UPDATE
+AS
+BEGIN
+	IF(UPDATE([SaldoDevedor]))
+	BEGIN
+		DECLARE
+			@Id INT, @Saldo DECIMAL
+			SELECT @Id = [IDCliente], @Saldo = [SaldoDevedor] FROM DELETED
+			INSERT INTO HistoricoClientes(IDCliente, SaldoAnterior) VALUES (@Id, @Saldo)
+	END
+END
+
+
+INSERT INTO [Clientes] VALUES ('Cliente', 10)
+UPDATE [Clientes] SET SaldoDevedor = 11
+
+SELECT * FROM [Clientes]
+SELECT * FROM [HistoricoClientes]
